@@ -1,0 +1,18 @@
+[
+    { "id": 1, "todo": "Fazer algo legal para alguém que eu me importo", "completed": true, "userId": 26 },
+    { "id": 2, "todo": "Comprar presentes para amigos", "completed": false, "userId": 26 },
+    { "id": 3, "todo": "Ler um livro interessante", "completed": true, "userId": 26 },
+    { "id": 4, "todo": "Assistir a um filme recomendado", "completed": false, "userId": 26 },
+    { "id": 5, "todo": "Organizar a casa", "completed": true, "userId": 26 },
+    { "id": 6, "todo": "Fazer exercícios físicos", "completed": false, "userId": 26 },
+    { "id": 7, "todo": "Cozer um prato novo", "completed": true, "userId": 26 },
+    { "id": 8, "todo": "Escrever em um diário", "completed": false, "userId": 26 },
+    { "id": 9, "todo": "Visitar um amigo que não vejo há muito tempo", "completed": true, "userId": 26 },
+    { "id": 10, "todo": "Participar de um evento local", "completed": false, "userId": 26 },
+    { "id": 11, "todo": "Estudar um novo idioma", "completed": true, "userId": 26 },
+    { "id": 12, "todo": "Fazer uma limpeza geral no computador", "completed": false, "userId": 26 },
+    { "id": 13, "todo": "Planejar uma viagem", "completed": true, "userId": 26 },
+    { "id": 14, "todo": "Explorar um novo hobby", "completed": false, "userId": 26 },
+    { "id": 15, "todo": "Assistir a uma palestra ou webinar", "completed": true, "userId": 26 }
+  ]
+  
