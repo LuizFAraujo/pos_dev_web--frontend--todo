@@ -53,15 +53,33 @@ const App: React.FC = () => {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
+  const completedCount = todos.filter(todo => todo.completed).length;
+  const totalCount = todos.length;
+
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Header />
-      <Input onAddTodo={handleAddTodo} />
-      <List
-        todos={todos}
-        onToggleTodo={(id) => handleToggleTodo(id)}
-        onRemoveTodo={(id) => handleRemoveTodo(id)}
-      />
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      <header className="bg-teal-600 text-white p-4 fixed top-0 left-0 w-full z-10 shadow-md">
+        <Header />
+      </header>
+
+      <main className="flex-1 pt-20 pb-24 px-4 flex flex-col bg-white">
+        <div className="bg-gray-100 rounded-lg shadow-md mb-4 p-4">
+          <Input onAddTodo={handleAddTodo} />
+        </div>
+        <div className="flex-1 overflow-auto">
+          <List
+            todos={todos}
+            onToggleTodo={(id) => handleToggleTodo(id)}
+            onRemoveTodo={(id) => handleRemoveTodo(id)}
+          />
+        </div>
+      </main>
+
+      <footer className="bg-teal-700 text-white p-4 fixed bottom-0 left-0 w-full text-center shadow-md">
+        <p className="text-sm font-medium">
+          {`Total de tarefas: ${totalCount} | Concluídas: ${completedCount}`}
+        </p>
+      </footer>
     </div>
   );
 };
