@@ -26,7 +26,7 @@ const List: React.FC<ListProps> = ({ todos, onToggleTodo, onRemoveTodo }) => {
                     </div>
                     <button
                         onClick={() => onRemoveTodo(todo.id)}
-                        className="inline-flex items-center justify-center px-4 py-2 border border-transparent font-semibold rounded-lg shadow-sm text-white bg-red-500 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                        className="bg-red-500 text-white p-2 rounded hover:bg-red-600"
                     >
                         Remover
                     </button>

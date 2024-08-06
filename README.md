@@ -12,8 +12,9 @@ Criar uma aplicação Web utilizando um framework client-side JS.
 
 ## 💻 Funcionalidades
 
-- Listar tarefas.
-- Adicionar e Remover tarefas.
+- Listar tarefas
+- Adicionar e Remover tarefas
+- **Atualização**: Listagem de tarefas por API, através do endpoint [https://dummyjson.com/docs/todos](https://dummyjson.com/docs/todos)
 
 ## 📄 Licença
 

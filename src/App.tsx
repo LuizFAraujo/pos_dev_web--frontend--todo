@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Input from './components/Input';
 import List from './components/List';
+import { fetchTodos } from './data/api';
 
 interface Todo {
   id: number;
@@ -12,33 +13,33 @@ interface Todo {
 
 const App: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
-  const [nextId, setNextId] = useState<number>(16); // Começar do ID 16
+  const [nextId, setNextId] = useState<number>(16);
+  const [newTodo, setNewTodo] = useState<string>('');
 
   useEffect(() => {
-    // Função para buscar dados de tarefas
-    const fetchTodos = async () => {
+    const loadTodos = async () => {
       try {
-        const response = await fetch('/src/data/tasks.json');
-        const data: Todo[] = await response.json();
+        const data = await fetchTodos();
         setTodos(data);
-        setNextId(data.length + 1); // Ajusta o próximo ID
+        setNextId(data.length + 1);
       } catch (error) {
         console.error('Erro ao buscar tarefas:', error);
       }
     };
 
-    fetchTodos();
+    loadTodos();
   }, []);
 
-  const handleAddTodo = (text: string) => {
-    const newTodo: Todo = {
+  const handleAddTodo = () => {
+    const newTodoItem: Todo = {
       id: nextId,
-      todo: text,
+      todo: newTodo,
       completed: false,
       userId: 26,
     };
-    setTodos([...todos, newTodo]);
-    setNextId(nextId + 1); // Atualiza o próximo ID
+    setTodos([...todos, newTodoItem]);
+    setNextId(nextId + 1);
+    setNewTodo('');
   };
 
   const handleToggleTodo = (id: number) => {
@@ -58,26 +59,41 @@ const App: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
-      <header className="bg-teal-600 text-white p-4 fixed top-0 left-0 w-full z-10 shadow-md">
+      <header className="bg-teal-600 text-white p-4 fixed top-0 left-0 w-full z-10 shadow-lg">
         <Header />
       </header>
 
-      <main className="flex-1 pt-20 pb-24 px-4 flex flex-col bg-white">
-        <div className="bg-gray-100 rounded-lg shadow-md mb-4 p-4">
-          <Input onAddTodo={handleAddTodo} />
+      <main className="flex-1 pt-20 pb-24 px-4 flex flex-col">
+        <div className="bg-white rounded-lg shadow-lg mb-4 p-4">
+          <div className="flex gap-2 items-center">
+            <input
+              type="text"
+              value={newTodo}
+              onChange={(e) => setNewTodo(e.target.value)}
+              className="border rounded px-2 py-1 flex-1"
+              placeholder="Nova tarefa"
+            />
+            <button
+              onClick={handleAddTodo}
+              className="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700"
+            >
+              Adicionar
+            </button>
+          </div>
         </div>
-        <div className="flex-1 overflow-auto">
+        <div className="flex-1 overflow-hidden">
           <List
             todos={todos}
-            onToggleTodo={(id) => handleToggleTodo(id)}
-            onRemoveTodo={(id) => handleRemoveTodo(id)}
+            onToggleTodo={handleToggleTodo}
+            onRemoveTodo={handleRemoveTodo}
           />
         </div>
       </main>
 
-      <footer className="bg-teal-700 text-white p-4 fixed bottom-0 left-0 w-full text-center shadow-md">
-        <p className="text-sm font-medium">
-          {`Total de tarefas: ${totalCount} | Concluídas: ${completedCount}`}
+      <footer className="bg-teal-800 text-white p-3 fixed bottom-0 left-0 w-full text-center shadow-lg">
+        <p className="text-lg font-semibold">
+          <span className="mx-4">Total de tarefas: {totalCount}</span>
+          <span className="mx-4">Concluídas: {completedCount}</span>
         </p>
       </footer>
     </div>
